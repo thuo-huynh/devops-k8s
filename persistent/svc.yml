@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demoapp
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http # tên port của service
+      protocol: TCP
+      port: 3001
+      targetPort: http # tên port của container bên file deployment
+  selector:
+    app: demoapp
