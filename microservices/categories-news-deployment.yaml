@@ -15,14 +15,14 @@ spec:
         component: categories-service
     spec:
       containers:
-        - name: categories-service
-          image: 080196/microservice
-          env:
-            - name: SERVICES
-              value: categories
-          envFrom:
-            - configMapRef:
-                name: microservice-cm
+      - name: categories-service
+        image: 080196/microservice
+        env:
+        - name: SERVICES
+          value: categories
+        envFrom:
+        - configMapRef:
+            name: microservice-cm
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -41,11 +41,11 @@ spec:
         component: news-service
     spec:
       containers:
-        - name: news-service
-          image: 080196/microservice
-          env:
-            - name: SERVICES
-              value: news
-          envFrom:
-            - configMapRef:
-                name: microservice-cm
+      - name: news-service
+        image: 080196/microservice
+        env:
+        - name: SERVICES
+          value: news
+        envFrom:
+        - configMapRef:
+            name: microservice-cm
