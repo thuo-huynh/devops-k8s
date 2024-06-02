@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoapp
+  labels:
+    app.kubernetes.io/name: viblo-pv-demo
+spec:
+  selector:
+    matchLabels:
+      app: demoapp
+  template:
+    metadata:
+      labels:
+        app: demoapp
+    spec:
+      securityContext:
+        fsGroup: 1001
+      containers:
+      - name: demoapp
+        image: maitrungduc1410/viblo-k8s-pv-demo:latest
+        ports:
+        - containerPort: 3000
+          name: http
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "64m"
+          limits:
+            memory: "750Mi"
+            cpu: "500m"
+        volumeMounts:
+          - name: data
+            mountPath: /app/storage
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: demo-pvc        

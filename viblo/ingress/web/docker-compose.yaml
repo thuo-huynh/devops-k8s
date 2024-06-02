@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  frontend:
+    image: maitrungduc1410/k8s-ingress-demo-frontend
+    restart: always
+    volumes:
+      - ./nginx.app.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 3002:80
+
+  backend:
+    image: maitrungduc1410/k8s-ingress-demo-backend
+    restart: always
+    env_file: .env
+
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+      - ./data:/var/lib/mysql/
