@@ -5,4 +5,4 @@ metadata:
 data:
   app_name: "Hello World"
   introduction.txt: |
-    My Introduction
+    This is to demo how to update Configmap
